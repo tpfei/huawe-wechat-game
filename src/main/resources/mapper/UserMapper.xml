@@ -78,5 +78,25 @@
         </where>
         ORDER BY sum_score DESC
     </select>
+    <insert id="addUser" parameterType="com.huaweisoft.huawei5g.model.User">
+    insert into users (groupid, topgroup,
+      `groups`, username, mobile,
+      email, energy, sum_score,
+      sum_score_rank, week_score, week_score_rank,
+      sign_count, sign_score, task_lvl,
+      task_count, task_score, pk_count,
+      pk_score, pk_win, pk_lose,
+      created_at, update_at, online_at,
+      `status`, nick_name, image)
+    values (#{groupid,jdbcType=INTEGER}, #{topgroup,jdbcType=INTEGER},
+      #{groups,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{energy,jdbcType=INTEGER}, #{sumScore,jdbcType=INTEGER},
+      #{sumScoreRank,jdbcType=INTEGER}, #{weekScore,jdbcType=INTEGER}, #{weekScoreRank,jdbcType=INTEGER},
+      #{signCount,jdbcType=INTEGER}, #{signScore,jdbcType=INTEGER}, #{taskLvl,jdbcType=INTEGER},
+      #{taskCount,jdbcType=INTEGER}, #{taskScore,jdbcType=INTEGER}, #{pkCount,jdbcType=INTEGER},
+      #{pkScore,jdbcType=INTEGER}, #{pkWin,jdbcType=INTEGER}, #{pkLose,jdbcType=INTEGER},
+      #{createdAt,jdbcType=INTEGER}, #{updateAt,jdbcType=INTEGER}, #{onlineAt,jdbcType=INTEGER},
+      #{status,jdbcType=TINYINT}, #{nickName,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR})
+  </insert>
 
 </mapper>

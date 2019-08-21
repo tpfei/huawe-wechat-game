@@ -10,12 +10,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Api(value = "UserController")
 @RestController
@@ -42,5 +40,11 @@ public class UserController {
         return ResponseResult.build(ResponseCode.SUCCESS,userPageInfo);
     }
 
+    @ApiOperation(value="新增用户")
+    @PostMapping("/user")
+    public ResponseResult addUser(@RequestBody User user) {
+        Map<Integer, String> map = userService.addUser(user);
+        return map.containsKey(1) ? ResponseResult.success() : ResponseResult.build(ResponseCode.ERROR, map);
+    }
 
 }
