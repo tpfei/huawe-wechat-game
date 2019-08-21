@@ -32,4 +32,7 @@ public interface UserMapper extends BaseMapper<User> {
 
     int deleteUserById(Integer id);
 
+    int deleteUsersBatch(List<Integer> ids);
+
+
 }

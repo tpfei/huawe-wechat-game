@@ -53,4 +53,11 @@ public class UserController {
         return flag == 0 ? ResponseResult.build(ResponseCode.ERROR, "id：" + id + "不存在") : ResponseResult.success();
     }
 
+    @ApiOperation(value="批量删除用户", notes="批量删除用户")
+    @DeleteMapping("/users")
+    public ResponseResult deleteUsersBatch(@RequestBody List<Integer> ids) {
+        int flag = userService.deleteUsersBatch(ids);
+        return flag == 0 ? ResponseResult.error() : ResponseResult.success();
+    }
+
 }

@@ -64,6 +64,8 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+
+
     private boolean mobileExsist(String mobile) {
         //向数据库中查询出所有手机号码
         List<User> users = getUsers();
@@ -78,5 +80,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int deleteUserById(Integer id) {
         return userMapper.deleteUserById(id);
+    }
+
+    @Override
+    public int deleteUsersBatch(List<Integer> ids) {
+        return userMapper.deleteUsersBatch(ids);
     }
 }

@@ -13,4 +13,6 @@ public interface UserService {
     Map<Integer, String> addUser(User user);
 
     int deleteUserById(Integer id);
+
+    int deleteUsersBatch(List<Integer> ids);
 }

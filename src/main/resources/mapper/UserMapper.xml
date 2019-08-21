@@ -102,5 +102,12 @@
     delete from users
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteUsersBatch" parameterType="java.util.List">
+    delete from users
+    where id in
+    <foreach collection="list" item="userId" open="(" close=")" index="no" separator=",">
+        #{userId}
+    </foreach>
+  </delete>
 
 </mapper>
