@@ -27,11 +27,26 @@
         <result column="update_at" jdbcType="INTEGER" property="updateAt"/>
         <result column="online_at" jdbcType="INTEGER" property="onlineAt"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="image" jdbcType="VARCHAR" property="image"/>
+    </resultMap>
+    <resultMap id="LessResultMap" type="com.huaweisoft.huawei5g.model.User">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="groupid" jdbcType="INTEGER" property="groupid"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="image" jdbcType="VARCHAR" property="image"/>
     </resultMap>
     <sql id="Base_Column_List">
       id, groupid, topgroup, `groups`, username, mobile, email, energy, sum_score, sum_score_rank,
       week_score, week_score_rank, sign_count, sign_score, task_lvl, task_count, task_score,
-      pk_count, pk_score, pk_win, pk_lose, created_at, update_at, online_at, `status`
+      pk_count, pk_score, pk_win, pk_lose, created_at, update_at, online_at, `status`, nick_name, image
+    </sql>
+    <sql id="User_Less_Column_List">
+      id, username, nick_name, image, groupid, email, mobile, `status`
     </sql>
 
     <select id="getUserById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -42,10 +57,9 @@
     </select>
 
     <select id="getUsers" resultType="com.huaweisoft.huawei5g.model.User">
-        SELECT id, username, groupid, mobile, energy, email, task_lvl, task_count, task_score ,pk_count,
-               pk_score, pk_win, pk_lose, sum_score, sum_score_rank, sign_count, sign_score, week_score,
-               week_score_rank
-        FROM   users;
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM   users
     </select>
 
     <select id="searchUsers" parameterType="String" resultType="com.huaweisoft.huawei5g.model.User">

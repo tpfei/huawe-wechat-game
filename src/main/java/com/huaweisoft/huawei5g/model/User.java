@@ -13,6 +13,10 @@ public class User extends Model<User> {
 
     private String username;
 
+    private String nickName;
+
+    private String image;
+
     private String mobile;
 
     private String email;
@@ -52,6 +56,36 @@ public class User extends Model<User> {
     private Integer onlineAt;
 
     private Byte status;
+
+    public User() {
+    }
+
+    public User(Integer id, Integer groupid, String username, String nickName, String image, String mobile, String email, Byte status) {
+        this.id = id;
+        this.groupid = groupid;
+        this.username = username;
+        this.nickName = nickName;
+        this.image = image;
+        this.mobile = mobile;
+        this.email = email;
+        this.status = status;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
 
     public Integer getId() {
         return id;
