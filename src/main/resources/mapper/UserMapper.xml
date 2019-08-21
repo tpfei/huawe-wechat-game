@@ -98,5 +98,9 @@
       #{createdAt,jdbcType=INTEGER}, #{updateAt,jdbcType=INTEGER}, #{onlineAt,jdbcType=INTEGER},
       #{status,jdbcType=TINYINT}, #{nickName,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR})
   </insert>
+  <delete id="deleteUserById" parameterType="java.lang.Integer">
+    delete from users
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
 
 </mapper>

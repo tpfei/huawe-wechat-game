@@ -30,4 +30,6 @@ public interface UserMapper extends BaseMapper<User> {
 
     int addUser(User user);
 
+    int deleteUserById(Integer id);
+
 }

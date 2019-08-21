@@ -9,7 +9,6 @@ import com.huaweisoft.huawei5g.utils.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,6 +44,13 @@ public class UserController {
     public ResponseResult addUser(@RequestBody User user) {
         Map<Integer, String> map = userService.addUser(user);
         return map.containsKey(1) ? ResponseResult.success() : ResponseResult.build(ResponseCode.ERROR, map);
+    }
+
+    @ApiOperation(value="根据id删除用户")
+    @DeleteMapping("/user/{id}")
+    public ResponseResult deleteUserById(@PathVariable("id") Integer id) {
+        int flag = userService.deleteUserById(id);
+        return flag == 0 ? ResponseResult.build(ResponseCode.ERROR, "id：" + id + "不存在") : ResponseResult.success();
     }
 
 }
