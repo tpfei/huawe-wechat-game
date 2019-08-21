@@ -28,6 +28,18 @@
         <result column="online_at" jdbcType="INTEGER" property="onlineAt"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
     </resultMap>
+    <sql id="Base_Column_List">
+      id, groupid, topgroup, `groups`, username, mobile, email, energy, sum_score, sum_score_rank,
+      week_score, week_score_rank, sign_count, sign_score, task_lvl, task_count, task_score,
+      pk_count, pk_score, pk_win, pk_lose, created_at, update_at, online_at, `status`
+    </sql>
+
+    <select id="getUserById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from users
+        where id = #{id,jdbcType=INTEGER}
+    </select>
 
     <select id="getUsers" resultType="com.huaweisoft.huawei5g.model.User">
         SELECT id, username, groupid, mobile, energy, email, task_lvl, task_count, task_score ,pk_count,

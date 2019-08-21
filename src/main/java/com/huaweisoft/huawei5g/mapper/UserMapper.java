@@ -26,4 +26,6 @@ public interface UserMapper extends BaseMapper<User> {
      */
     IPage<User> selectMyPage(IPage<User> page, @Param(Constants.WRAPPER) Wrapper<User> queryWrapper);
 
+    User getUserById(Integer id);
+
 }
