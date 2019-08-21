@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huaweisoft.huawei5g.mapper.NoticeMapper">
+  <resultMap id="BaseResultMap" type="com.huaweisoft.huawei5g.model.Notice">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="groupid" jdbcType="INTEGER" property="groupid" />
+    <result column="groups" jdbcType="VARCHAR" property="groups" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="start_at" jdbcType="VARCHAR" property="startAt" />
+    <result column="stop_at" jdbcType="VARCHAR" property="stopAt" />
+    <result column="created_at" jdbcType="INTEGER" property="createdAt" />
+    <result column="update_at" jdbcType="INTEGER" property="updateAt" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+
+</mapper>

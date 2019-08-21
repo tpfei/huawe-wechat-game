@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huaweisoft.huawei5g.mapper.PassMapper">
+  <resultMap id="BaseResultMap" type="com.huaweisoft.huawei5g.model.Pass">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="pass_id" jdbcType="INTEGER" property="passId" />
+    <result column="topic_id1" jdbcType="INTEGER" property="topicId1" />
+    <result column="topic_id2" jdbcType="INTEGER" property="topicId2" />
+    <result column="topic_id3" jdbcType="INTEGER" property="topicId3" />
+    <result column="topic_id4" jdbcType="INTEGER" property="topicId4" />
+    <result column="topic_id5" jdbcType="INTEGER" property="topicId5" />
+    <result column="topic_id6" jdbcType="INTEGER" property="topicId6" />
+    <result column="video_title" jdbcType="VARCHAR" property="videoTitle" />
+    <result column="video_url" jdbcType="VARCHAR" property="videoUrl" />
+    <result column="video_praise" jdbcType="INTEGER" property="videoPraise" />
+    <result column="video_posts" jdbcType="INTEGER" property="videoPosts" />
+    <result column="created_at" jdbcType="INTEGER" property="createdAt" />
+    <result column="update_at" jdbcType="INTEGER" property="updateAt" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.huaweisoft.huawei5g.model.Pass">
+    <result column="video_desc" jdbcType="LONGVARCHAR" property="videoDesc" />
+  </resultMap>
+</mapper>

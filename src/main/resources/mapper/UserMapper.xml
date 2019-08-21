@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huaweisoft.huawei5g.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.huaweisoft.huawei5g.model.User">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="groupid" jdbcType="INTEGER" property="groupid"/>
+        <result column="topgroup" jdbcType="INTEGER" property="topgroup"/>
+        <result column="groups" jdbcType="VARCHAR" property="groups"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="energy" jdbcType="INTEGER" property="energy"/>
+        <result column="sum_score" jdbcType="INTEGER" property="sumScore"/>
+        <result column="sum_score_rank" jdbcType="INTEGER" property="sumScoreRank"/>
+        <result column="week_score" jdbcType="INTEGER" property="weekScore"/>
+        <result column="week_score_rank" jdbcType="INTEGER" property="weekScoreRank"/>
+        <result column="sign_count" jdbcType="INTEGER" property="signCount"/>
+        <result column="sign_score" jdbcType="INTEGER" property="signScore"/>
+        <result column="task_lvl" jdbcType="INTEGER" property="taskLvl"/>
+        <result column="task_count" jdbcType="INTEGER" property="taskCount"/>
+        <result column="task_score" jdbcType="INTEGER" property="taskScore"/>
+        <result column="pk_count" jdbcType="INTEGER" property="pkCount"/>
+        <result column="pk_score" jdbcType="INTEGER" property="pkScore"/>
+        <result column="pk_win" jdbcType="INTEGER" property="pkWin"/>
+        <result column="pk_lose" jdbcType="INTEGER" property="pkLose"/>
+        <result column="created_at" jdbcType="INTEGER" property="createdAt"/>
+        <result column="update_at" jdbcType="INTEGER" property="updateAt"/>
+        <result column="online_at" jdbcType="INTEGER" property="onlineAt"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+    </resultMap>
+
+    <select id="getUsers" resultType="com.huaweisoft.huawei5g.model.User">
+        SELECT id, username, groupid, mobile, energy, email, task_lvl, task_count, task_score ,pk_count,
+               pk_score, pk_win, pk_lose, sum_score, sum_score_rank, sign_count, sign_score, week_score,
+               week_score_rank
+        FROM   users;
+    </select>
+
+    <select id="searchUsers" parameterType="String" resultType="com.huaweisoft.huawei5g.model.User">
+        SELECT id, username, groupid, mobile, energy, email, task_lvl, task_count, task_score ,pk_count,
+               pk_score, pk_win, pk_lose, sum_score, sum_score_rank, sign_count, sign_score, week_score,
+               week_score_rank
+        FROM   users
+        WHERE  mobile = #{mobileOrName}
+        OR     username LIKE #{mobileOrName};
+    </select>
+
+    <select id="selectMyPage" resultType="com.huaweisoft.huawei5g.model.User">
+        SELECT * FROM users
+        <where>
+            ${ew.sqlSegment}
+        </where>
+        ORDER BY sum_score DESC
+    </select>
+
+</mapper>

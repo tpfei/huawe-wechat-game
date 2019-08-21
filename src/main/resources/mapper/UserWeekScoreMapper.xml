@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huaweisoft.huawei5g.mapper.UserWeekScoreMapper">
+  <resultMap id="BaseResultMap" type="com.huaweisoft.huawei5g.model.UserWeekScore">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="groupid" jdbcType="INTEGER" property="groupid" />
+    <result column="topgroup" jdbcType="INTEGER" property="topgroup" />
+    <result column="weeks" jdbcType="VARCHAR" property="weeks" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="created_at" jdbcType="INTEGER" property="createdAt" />
+    <result column="update_at" jdbcType="INTEGER" property="updateAt" />
+  </resultMap>
+
+</mapper>

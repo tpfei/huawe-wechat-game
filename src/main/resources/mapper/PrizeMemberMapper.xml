@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huaweisoft.huawei5g.mapper.PrizeMemberMapper">
+  <resultMap id="BaseResultMap" type="com.huaweisoft.huawei5g.model.PrizeMember">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="prize_set_id" jdbcType="INTEGER" property="prizeSetId" />
+    <result column="prize_set_rank" jdbcType="SMALLINT" property="prizeSetRank" />
+    <result column="seg1" jdbcType="VARCHAR" property="seg1" />
+    <result column="seg2" jdbcType="VARCHAR" property="seg2" />
+    <result column="seg3" jdbcType="VARCHAR" property="seg3" />
+    <result column="created_at" jdbcType="INTEGER" property="createdAt" />
+    <result column="update_at" jdbcType="INTEGER" property="updateAt" />
+  </resultMap>
+
+</mapper>

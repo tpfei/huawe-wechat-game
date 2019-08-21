@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huaweisoft.huawei5g.mapper.PassLogMapper">
+  <resultMap id="BaseResultMap" type="com.huaweisoft.huawei5g.model.PassLog">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="pass_id" jdbcType="INTEGER" property="passId" />
+    <result column="rights" jdbcType="TINYINT" property="rights" />
+    <result column="stars" jdbcType="TINYINT" property="stars" />
+    <result column="score" jdbcType="SMALLINT" property="score" />
+    <result column="turn_score" jdbcType="SMALLINT" property="turnScore" />
+    <result column="created_at" jdbcType="INTEGER" property="createdAt" />
+    <result column="update_at" jdbcType="INTEGER" property="updateAt" />
+  </resultMap>
+
+</mapper>
