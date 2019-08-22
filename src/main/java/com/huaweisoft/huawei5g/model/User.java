@@ -2,6 +2,8 @@ package com.huaweisoft.huawei5g.model;
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 
+import java.util.Objects;
+
 public class User extends Model<User> {
     private Integer id;
 
@@ -57,6 +59,8 @@ public class User extends Model<User> {
 
     private Byte status;
 
+    private UserGroup userGroup;
+
     public User() {
     }
 
@@ -69,6 +73,67 @@ public class User extends Model<User> {
         this.mobile = mobile;
         this.email = email;
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", groupid=" + groupid +
+                ", topgroup=" + topgroup +
+                ", groups='" + groups + '\'' +
+                ", username='" + username + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", image='" + image + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", email='" + email + '\'' +
+                ", energy=" + energy +
+                ", sumScore=" + sumScore +
+                ", sumScoreRank=" + sumScoreRank +
+                ", weekScore=" + weekScore +
+                ", weekScoreRank=" + weekScoreRank +
+                ", signCount=" + signCount +
+                ", signScore=" + signScore +
+                ", taskLvl=" + taskLvl +
+                ", taskCount=" + taskCount +
+                ", taskScore=" + taskScore +
+                ", pkCount=" + pkCount +
+                ", pkScore=" + pkScore +
+                ", pkWin=" + pkWin +
+                ", pkLose=" + pkLose +
+                ", createdAt=" + createdAt +
+                ", updateAt=" + updateAt +
+                ", onlineAt=" + onlineAt +
+                ", status=" + status +
+                ", userGroup=" + userGroup +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return groupid.equals(user.groupid) &&
+                username.equals(user.username) &&
+                nickName.equals(user.nickName) &&
+                image.equals(user.image) &&
+                mobile.equals(user.mobile) &&
+                email.equals(user.email) &&
+                status.equals(user.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(groupid, username, nickName, image, mobile, email, status);
+    }
+
+    public UserGroup getUserGroup() {
+        return userGroup;
+    }
+
+    public void setUserGroup(UserGroup userGroup) {
+        this.userGroup = userGroup;
     }
 
     public String getImage() {

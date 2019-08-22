@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaweisoft.huawei5g.mapper.UserMapper">
     <resultMap id="BaseResultMap" type="com.huaweisoft.huawei5g.model.User">
-        <result column="id" jdbcType="INTEGER" property="id"/>
+        <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="groupid" jdbcType="INTEGER" property="groupid"/>
         <result column="topgroup" jdbcType="INTEGER" property="topgroup"/>
         <result column="groups" jdbcType="VARCHAR" property="groups"/>
@@ -29,6 +29,12 @@
         <result column="status" jdbcType="TINYINT" property="status"/>
         <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
         <result column="image" jdbcType="VARCHAR" property="image"/>
+        <result column="ug_id" jdbcType="INTEGER" property="userGroup.id" />
+        <result column="parentid" jdbcType="INTEGER" property="userGroup.parentid" />
+        <result column="name" jdbcType="VARCHAR" property="userGroup.name" />
+        <result column="created_at" jdbcType="INTEGER" property="userGroup.createdAt" />
+        <result column="update_at" jdbcType="INTEGER" property="userGroup.updateAt" />
+        <result column="status" jdbcType="TINYINT" property="userGroup.status" />
     </resultMap>
     <resultMap id="LessResultMap" type="com.huaweisoft.huawei5g.model.User">
         <result column="id" jdbcType="INTEGER" property="id"/>
@@ -45,21 +51,30 @@
       week_score, week_score_rank, sign_count, sign_score, task_lvl, task_count, task_score,
       pk_count, pk_score, pk_win, pk_lose, created_at, update_at, online_at, `status`, nick_name, image
     </sql>
+    <sql id="Extend_Column_List">
+      u.id, u.groupid, u.topgroup, u.`groups`, u.username, u.mobile, u.email, u.energy, u.sum_score, u.sum_score_rank,
+      u.week_score, u.week_score_rank, u.sign_count, u.sign_score, u.task_lvl, u.task_count, u.task_score,
+      u.pk_count, u.pk_score, u.pk_win, u.pk_lose, u.created_at, u.update_at, u.online_at, u.`status`, u.nick_name, u.image,
+      ug.id ug_id, ug.parentid, ug.name, ug.created_at, ug.update_at, ug.status
+    </sql>
+    
     <sql id="User_Less_Column_List">
       id, username, nick_name, image, groupid, email, mobile, `status`
     </sql>
 
     <select id="getUserById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
-        from users
-        where id = #{id,jdbcType=INTEGER}
+        <include refid="Extend_Column_List"></include>
+        from users u, user_group ug
+        where u.groupid = ug.id
+        and u.id = #{id,jdbcType=INTEGER}
     </select>
 
-    <select id="getUsers" resultType="com.huaweisoft.huawei5g.model.User">
+    <select id="getUsers" resultMap="BaseResultMap">
         SELECT
-        <include refid="Base_Column_List" />
-        FROM   users
+        <include refid="Extend_Column_List"></include>
+        FROM   users u, user_group ug
+        WHERE u.groupid = ug.id
     </select>
 
     <select id="searchUsers" parameterType="String" resultType="com.huaweisoft.huawei5g.model.User">
@@ -98,6 +113,23 @@
       #{createdAt,jdbcType=INTEGER}, #{updateAt,jdbcType=INTEGER}, #{onlineAt,jdbcType=INTEGER},
       #{status,jdbcType=TINYINT}, #{nickName,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR})
   </insert>
+    <insert id="addUsersBatch" parameterType="java.util.List">
+        insert into users(username, nick_name, image, groupid, email, mobile, `status`, created_at, update_at)
+        values
+        <foreach collection="list" item="user" separator="," index="no">
+        (
+            #{user.username},
+            #{user.nickName},
+            #{user.image},
+            #{user.groupid},
+            #{user.email},
+            #{user.mobile},
+            #{user.status},
+            #{user.createdAt},
+            #{user.updateAt}
+        )
+        </foreach>
+    </insert>
   <delete id="deleteUserById" parameterType="java.lang.Integer">
     delete from users
     where id = #{id,jdbcType=INTEGER}
@@ -109,5 +141,6 @@
         #{userId}
     </foreach>
   </delete>
+
 
 </mapper>

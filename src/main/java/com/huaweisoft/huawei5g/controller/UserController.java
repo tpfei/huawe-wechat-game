@@ -4,12 +4,14 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.huaweisoft.huawei5g.consts.ResponseCode;
 import com.huaweisoft.huawei5g.model.User;
+import com.huaweisoft.huawei5g.service.impl.UserExcelServiceImpl;
 import com.huaweisoft.huawei5g.service.impl.UserServiceImpl;
 import com.huaweisoft.huawei5g.utils.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -22,7 +24,10 @@ public class UserController {
     @Autowired
     UserServiceImpl userService;
 
-    @ApiOperation(value="获取用户详细信息", notes="根据url的id来获取用户详细信息")
+    @Autowired
+    UserExcelServiceImpl userExcelService;
+
+    @ApiOperation(value="根据id获取用户", notes="根据id获取用户")
     @GetMapping("/user")
     public User getUserById(@RequestParam("id") Integer id) {
         User user = userService.getUserById(id);
@@ -58,6 +63,18 @@ public class UserController {
     public ResponseResult deleteUsersBatch(@RequestBody List<Integer> ids) {
         int flag = userService.deleteUsersBatch(ids);
         return flag == 0 ? ResponseResult.error() : ResponseResult.success();
+    }
+
+    @ApiOperation(value="根据Excel表格导入用户数据")
+    @PostMapping("/import")
+    public ResponseResult importUsers(MultipartFile file) {
+        List<User> users = userExcelService.importUsers(file);
+        for (User u : users) {
+            System.out.println(u);
+        }
+        int count = userService.addUsersBatch(users);
+        System.out.println("count: " + count);
+        return users == null ? ResponseResult.error() : ResponseResult.build(ResponseCode.SUCCESS, users);
     }
 
 }

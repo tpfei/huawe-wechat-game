@@ -9,5 +9,8 @@
     <result column="update_at" jdbcType="INTEGER" property="updateAt" />
     <result column="status" jdbcType="TINYINT" property="status" />
   </resultMap>
+  <select id="getIdByUserGroupName" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select id from user_group where name = #{name}
+  </select>
 
 </mapper>

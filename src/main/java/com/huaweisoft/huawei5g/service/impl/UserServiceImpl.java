@@ -1,14 +1,14 @@
 package com.huaweisoft.huawei5g.service.impl;
 
+import com.huaweisoft.huawei5g.mapper.UserGroupMapper;
 import com.huaweisoft.huawei5g.mapper.UserMapper;
 import com.huaweisoft.huawei5g.model.User;
+import com.huaweisoft.huawei5g.model.UserGroup;
 import com.huaweisoft.huawei5g.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -65,6 +65,41 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    @Override
+    public int addUsersBatch(List<User> users) {
+        //校验是否插入相同数据
+        HashSet<Integer> repeatRows = new HashSet<Integer>();
+        for (int i=0; i<users.size()-1; i++) {
+            User user = users.get(i);
+            User userNext = users.get(i + 1);
+            if (user.equals(userNext)) {
+                repeatRows.add(i);
+                repeatRows.add(i + 1);
+            }
+        }
+        //有重复的行
+        if (repeatRows.size() > 0) {
+            //生成Excel到前端
+            // TODO
+
+            return 0;
+        }
+
+        //批量插入前先从数据库获取数据
+        List<User> databaseUsers = userMapper.getUsers();
+        //校验手机号码是否重复
+        HashSet<Integer> repeatMobiles = new HashSet<>();
+        for (int i=0; i<users.size()-1; i++) {
+            String mobile = users.get(i).getMobile();
+            String mobileNext = users.get(i + 1).getMobile();
+            if (mobile.equals(mobileNext)) {
+                repeatRows.add(i);
+                repeatRows.add(i + 1);
+            }
+        }
+        //校验手机号码是否已经被注册
+        return userMapper.addUsersBatch(users);
+    }
 
     private boolean mobileExsist(String mobile) {
         //向数据库中查询出所有手机号码

@@ -34,5 +34,7 @@ public interface UserMapper extends BaseMapper<User> {
 
     int deleteUsersBatch(List<Integer> ids);
 
+    int addUsersBatch(List<User> users);
+
 
 }
