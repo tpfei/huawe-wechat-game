@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaweisoft.huawei5g.mapper.UserMapper">
     <resultMap id="BaseResultMap" type="com.huaweisoft.huawei5g.model.User">
-        <result column="id" jdbcType="INTEGER" property="id"/>
+        <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="groupid" jdbcType="INTEGER" property="groupid"/>
         <result column="topgroup" jdbcType="INTEGER" property="topgroup"/>
         <result column="groups" jdbcType="VARCHAR" property="groups"/>
@@ -12,6 +12,7 @@
         <result column="energy" jdbcType="INTEGER" property="energy"/>
         <result column="sum_score" jdbcType="INTEGER" property="sumScore"/>
         <result column="sum_score_rank" jdbcType="INTEGER" property="sumScoreRank"/>
+        <result column="weeks" jdbcType="VARCHAR" property="weeks"/>
         <result column="week_score" jdbcType="INTEGER" property="weekScore"/>
         <result column="week_score_rank" jdbcType="INTEGER" property="weekScoreRank"/>
         <result column="sign_count" jdbcType="INTEGER" property="signCount"/>
@@ -27,30 +28,52 @@
         <result column="update_at" jdbcType="INTEGER" property="updateAt"/>
         <result column="online_at" jdbcType="INTEGER" property="onlineAt"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="pk_winrate" jdbcType="VARCHAR" property="pkWinrate"/>
+        <result column="lottery_count" jdbcType="INTEGER" property="lotteryCount"/>
+        <result column="lottery_score" jdbcType="INTEGER" property="lotteryScore"/>
     </resultMap>
+    <sql id="User_Column_List">
+        id, groupid, topgroup, `groups`, username, mobile, email, energy, sum_score, sum_score_rank, weeks,
+        week_score, week_score_rank, sign_count, sign_score, task_lvl, task_count,task_score, pk_count,
+        pk_score, pk_win, pk_lose, created_at, update_at, online_at,status, nickname, pk_winrate, lottery_count, lottery_score
+    </sql>
 
-    <select id="getUsers" resultType="com.huaweisoft.huawei5g.model.User">
-        SELECT id, username, groupid, mobile, energy, email, task_lvl, task_count, task_score ,pk_count,
-               pk_score, pk_win, pk_lose, sum_score, sum_score_rank, sign_count, sign_score, week_score,
-               week_score_rank
-        FROM   users;
+    <!--导出数据-->
+    <select id="getLists" resultType="com.huaweisoft.huawei5g.model.User">
+        SELECT
+        <include refid="User_Column_List"/>
+        FROM users
+        ORDER BY sum_score DESC
+    </select>
+
+    <!--总排行-->
+    <select id="rankByTotalScore" resultType="com.huaweisoft.huawei5g.model.User">
+        SELECT
+        <include refid="User_Column_List"/>
+        FROM users
+        ${ew.sqlSegment}
+        ORDER BY sum_score DESC
+    </select>
+
+    <!--周总排行-->
+    <select id="rankByWeeks" parameterType="String" resultType="com.huaweisoft.huawei5g.model.User">
+        SELECT
+        <include refid="User_Column_List"/>
+        FROM users
+        WHERE weeks = #{weeks}
+        ${ew.sqlSegment}
+        ORDER BY sum_score DESC
     </select>
 
     <select id="searchUsers" parameterType="String" resultType="com.huaweisoft.huawei5g.model.User">
-        SELECT id, username, groupid, mobile, energy, email, task_lvl, task_count, task_score ,pk_count,
-               pk_score, pk_win, pk_lose, sum_score, sum_score_rank, sign_count, sign_score, week_score,
-               week_score_rank
-        FROM   users
-        WHERE  mobile = #{mobileOrName}
-        OR     username LIKE #{mobileOrName};
-    </select>
-
-    <select id="selectMyPage" resultType="com.huaweisoft.huawei5g.model.User">
-        SELECT * FROM users
+        SELECT
+        <include refid="User_Column_List"/>
+        FROM users
         <where>
+            mobile = #{mobileOrName} OR username LIKE #{mobileOrName}
             ${ew.sqlSegment}
         </where>
         ORDER BY sum_score DESC
     </select>
-
 </mapper>

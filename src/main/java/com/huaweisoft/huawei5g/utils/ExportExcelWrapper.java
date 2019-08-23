@@ -29,7 +29,7 @@ public class ExportExcelWrapper<T> extends ExportExcelUtil {
      * @param response
      * @param version  2003 或者 2007，不传时默认生成2003版本
      */
-    public void exportExcel(String fileName, String title, String[] headers, Collection<T> dataset, HttpServletResponse response, String version) {
+    public boolean exportExcel(String fileName, String title, String[] headers, Collection<T> dataset, HttpServletResponse response, String version) {
         try {
             response.setContentType("application/vnd.ms-excel");
             String suffix = null;
@@ -45,9 +45,10 @@ public class ExportExcelWrapper<T> extends ExportExcelUtil {
             } else {
                 workbook = new XSSFWorkbook();
             }
-            exportExcel(workbook, title, headers, dataset, response.getOutputStream(), "yyyy-MM-dd HH:mm:ss");
+            return exportExcel(workbook, title, headers, dataset, response.getOutputStream(), "yyyy-MM-dd HH:mm:ss");
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 }

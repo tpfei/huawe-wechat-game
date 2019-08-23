@@ -1,25 +1,10 @@
 package com.huaweisoft.huawei5g.model;
 
-public class UserGroup {
-    private Integer id;
-
-    private Integer parentid;
+public class UserGroupVO extends UserGroup {
 
     private String name;
 
-    private Integer createdAt;
-
-    private Integer updateAt;
-
-    private Byte status;
-
     private String userCount;
-
-    private Integer averageScore;
-
-    private Integer sumScore;
-
-    private Integer sumScoreRank;
 
     private Integer taskConut;
 
@@ -43,52 +28,18 @@ public class UserGroup {
 
     private Integer signScore;
 
-    public Integer getId() {
-        return id;
-    }
+    private Integer sumScore;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private Integer averageScore;
 
-    public Integer getParentid() {
-        return parentid;
-    }
-
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
-    }
+    private Integer sumScoreRank;
 
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Integer createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Integer getUpdateAt() {
-        return updateAt;
-    }
-
-    public void setUpdateAt(Integer updateAt) {
-        this.updateAt = updateAt;
-    }
-
-    public Byte getStatus() {
-        return status;
-    }
-
-    public void setStatus(Byte status) {
-        this.status = status;
+        this.name = name;
     }
 
     public String getUserCount() {
@@ -96,31 +47,7 @@ public class UserGroup {
     }
 
     public void setUserCount(String userCount) {
-        this.userCount = userCount == null ? null : userCount.trim();
-    }
-
-    public Integer getAverageScore() {
-        return averageScore;
-    }
-
-    public void setAverageScore(Integer averageScore) {
-        this.averageScore = averageScore;
-    }
-
-    public Integer getSumScore() {
-        return sumScore;
-    }
-
-    public void setSumScore(Integer sumScore) {
-        this.sumScore = sumScore;
-    }
-
-    public Integer getSumScoreRank() {
-        return sumScoreRank;
-    }
-
-    public void setSumScoreRank(Integer sumScoreRank) {
-        this.sumScoreRank = sumScoreRank;
+        this.userCount = userCount;
     }
 
     public Integer getTaskConut() {
@@ -152,7 +79,7 @@ public class UserGroup {
     }
 
     public void setPkWin(String pkWin) {
-        this.pkWin = pkWin == null ? null : pkWin.trim();
+        this.pkWin = pkWin;
     }
 
     public String getPkLost() {
@@ -160,7 +87,7 @@ public class UserGroup {
     }
 
     public void setPkLost(String pkLost) {
-        this.pkLost = pkLost == null ? null : pkLost.trim();
+        this.pkLost = pkLost;
     }
 
     public String getPkWinrate() {
@@ -168,7 +95,7 @@ public class UserGroup {
     }
 
     public void setPkWinrate(String pkWinrate) {
-        this.pkWinrate = pkWinrate == null ? null : pkWinrate.trim();
+        this.pkWinrate = pkWinrate;
     }
 
     public Integer getPkScore() {
@@ -209,5 +136,29 @@ public class UserGroup {
 
     public void setSignScore(Integer signScore) {
         this.signScore = signScore;
+    }
+
+    public Integer getSumScore() {
+        return sumScore;
+    }
+
+    public void setSumScore(Integer sumScore) {
+        this.sumScore = sumScore;
+    }
+
+    public Integer getAverageScore() {
+        return averageScore;
+    }
+
+    public void setAverageScore(Integer averageScore) {
+        this.averageScore = averageScore;
+    }
+
+    public Integer getSumScoreRank() {
+        return sumScoreRank;
+    }
+
+    public void setSumScoreRank(Integer sumScoreRank) {
+        this.sumScoreRank = sumScoreRank;
     }
 }

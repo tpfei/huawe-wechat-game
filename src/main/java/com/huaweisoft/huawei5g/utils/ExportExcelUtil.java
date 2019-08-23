@@ -57,7 +57,7 @@ public class ExportExcelUtil<T> {
      * @param out       与输出设备关联的流对象，可以将EXCEL文档导出到本地文件或者网络中
      * @param pattern   如果有时间数据，设定输出格式。默认为"yyyy-MM-dd hh:mm:ss"
      */
-    public void exportExcel(Workbook workbook, String sheetName, String[] headers, Collection<T> dataset, OutputStream out, String pattern) {
+    public boolean exportExcel(Workbook workbook, String sheetName, String[] headers, Collection<T> dataset, OutputStream out, String pattern) {
         // 生成一个表格
         Sheet sheet = workbook.createSheet(sheetName);
         // 设置表格默认列宽度为15个字节
@@ -178,14 +178,17 @@ public class ExportExcelUtil<T> {
         }
         try {
             workbook.write(out);
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 //关闭资源
                 workbook.close();
             } catch (IOException e) {
                 e.printStackTrace();
+                return false;
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.huaweisoft.huawei5g.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
@@ -12,18 +13,15 @@ import java.util.List;
 
 @Repository
 public interface UserMapper extends BaseMapper<User> {
-    List<User> getUsers();
 
-    List<User> searchUsers(String mobileOrName);
-
+    List<User> getLists();
 
     /**
      * 自定义sql分页
-     *
-     * @param page
-     * @param queryWrapper
-     * @return
      */
-    IPage<User> selectMyPage(IPage<User> page, @Param(Constants.WRAPPER) Wrapper<User> queryWrapper);
+    IPage<User> searchUsers(IPage<User> page, @Param(Constants.WRAPPER) Wrapper<User> queryWrapper, String mobileOrName);
 
+    IPage<User> rankByWeeks(IPage<User> page, @Param(Constants.WRAPPER) Wrapper<User> queryWrapper, String weeks);
+
+    IPage<User> rankByTotalScore(IPage<User> page, @Param(Constants.WRAPPER) QueryWrapper<User> wrapper);
 }

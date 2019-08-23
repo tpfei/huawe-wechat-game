@@ -1,35 +1,12 @@
 package com.huaweisoft.huawei5g.model;
 
-public class User {
-    private Integer id;
-
-    private Integer groupid;
-
-    private Integer topgroup;
-
-    private String groups;
+public class UserVO {
 
     private String username;
 
-    private String mobile;
+    private String nickname;
 
-    private String email;
-
-    private Integer energy;
-
-    private Integer sumScore;
-
-    private Integer sumScoreRank;
-
-    private String weeks;
-
-    private Integer weekScore;
-
-    private Integer weekScoreRank;
-
-    private Integer signCount;
-
-    private Integer signScore;
+    private String groups;
 
     private Integer taskLvl;
 
@@ -39,50 +16,37 @@ public class User {
 
     private Integer pkCount;
 
-    private Integer pkScore;
-
     private Integer pkWin;
 
     private Integer pkLose;
 
-    private Integer createdAt;
-
-    private Integer updateAt;
-
-    private Integer onlineAt;
-
-    private Byte status;
-
-    private String nickname;
-
     private String pkWinrate;
+
+    private Integer pkScore;
 
     private Integer lotteryCount;
 
     private Integer lotteryScore;
 
-    public Integer getId() {
-        return id;
+    private Integer signCount;
+
+    private Integer signScore;
+
+    private Integer weekScore;
+
+    private Integer weekScoreRank;
+
+    private Integer sumScore;
+
+    private Integer sumScoreRank;
+
+
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getGroupid() {
-        return groupid;
-    }
-
-    public void setGroupid(Integer groupid) {
-        this.groupid = groupid;
-    }
-
-    public Integer getTopgroup() {
-        return topgroup;
-    }
-
-    public void setTopgroup(Integer topgroup) {
-        this.topgroup = topgroup;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getGroups() {
@@ -90,39 +54,7 @@ public class User {
     }
 
     public void setGroups(String groups) {
-        this.groups = groups == null ? null : groups.trim();
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
-    public Integer getEnergy() {
-        return energy;
-    }
-
-    public void setEnergy(Integer energy) {
-        this.energy = energy;
+        this.groups = groups;
     }
 
     public Integer getSumScore() {
@@ -139,14 +71,6 @@ public class User {
 
     public void setSumScoreRank(Integer sumScoreRank) {
         this.sumScoreRank = sumScoreRank;
-    }
-
-    public String getWeeks() {
-        return weeks;
-    }
-
-    public void setWeeks(String weeks) {
-        this.weeks = weeks == null ? null : weeks.trim();
     }
 
     public Integer getWeekScore() {
@@ -237,44 +161,12 @@ public class User {
         this.pkLose = pkLose;
     }
 
-    public Integer getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Integer createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Integer getUpdateAt() {
-        return updateAt;
-    }
-
-    public void setUpdateAt(Integer updateAt) {
-        this.updateAt = updateAt;
-    }
-
-    public Integer getOnlineAt() {
-        return onlineAt;
-    }
-
-    public void setOnlineAt(Integer onlineAt) {
-        this.onlineAt = onlineAt;
-    }
-
-    public Byte getStatus() {
-        return status;
-    }
-
-    public void setStatus(Byte status) {
-        this.status = status;
-    }
-
     public String getNickname() {
         return nickname;
     }
 
     public void setNickname(String nickname) {
-        this.nickname = nickname == null ? null : nickname.trim();
+        this.nickname = nickname;
     }
 
     public String getPkWinrate() {
@@ -282,7 +174,7 @@ public class User {
     }
 
     public void setPkWinrate(String pkWinrate) {
-        this.pkWinrate = pkWinrate == null ? null : pkWinrate.trim();
+        this.pkWinrate = pkWinrate;
     }
 
     public Integer getLotteryCount() {

@@ -1,13 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaweisoft.huawei5g.mapper.UserGroupMapper">
-  <resultMap id="BaseResultMap" type="com.huaweisoft.huawei5g.model.UserGroup">
-    <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="parentid" jdbcType="INTEGER" property="parentid" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="created_at" jdbcType="INTEGER" property="createdAt" />
-    <result column="update_at" jdbcType="INTEGER" property="updateAt" />
-    <result column="status" jdbcType="TINYINT" property="status" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.huaweisoft.huawei5g.model.UserGroup">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="parentid" jdbcType="INTEGER" property="parentid"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="created_at" jdbcType="INTEGER" property="createdAt"/>
+        <result column="update_at" jdbcType="INTEGER" property="updateAt"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="user_count" jdbcType="VARCHAR" property="userCount"/>
+        <result column="average_score" jdbcType="INTEGER" property="averageScore"/>
+        <result column="sum_score" jdbcType="INTEGER" property="sumScore"/>
+        <result column="sum_score_rank" jdbcType="INTEGER" property="sumScoreRank"/>
+        <result column="task_conut" jdbcType="INTEGER" property="taskConut"/>
+        <result column="task_score" jdbcType="INTEGER" property="taskScore"/>
+        <result column="pk_count" jdbcType="INTEGER" property="pkCount"/>
+        <result column="pk_win" jdbcType="VARCHAR" property="pkWin"/>
+        <result column="pk_lost" jdbcType="VARCHAR" property="pkLost"/>
+        <result column="pk_winrate" jdbcType="VARCHAR" property="pkWinrate"/>
+        <result column="pk_score" jdbcType="INTEGER" property="pkScore"/>
+        <result column="lottery_count" jdbcType="INTEGER" property="lotteryCount"/>
+        <result column="lottery_score" jdbcType="INTEGER" property="lotteryScore"/>
+        <result column="sign_count" jdbcType="INTEGER" property="signCount"/>
+        <result column="sign_score" jdbcType="INTEGER" property="signScore"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, parentid, name, created_at, update_at, status, user_count, average_score, sum_score,
+        sum_score_rank, task_conut, task_score, pk_count, pk_win, pk_lost, pk_winrate, pk_score,
+        lottery_count, lottery_score, sign_count, sign_score
+    </sql>
+
+    <select id="getUserGroups" resultType="com.huaweisoft.huawei5g.model.UserGroup">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user_group
+    </select>
+
+    <select id="selectMyPage" resultType="com.huaweisoft.huawei5g.model.UserGroup">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user_group ${ew.sqlSegment}
+    </select>
+
+    <select id="serachUserGroups" parameterType="String" resultType="com.huaweisoft.huawei5g.model.UserGroup">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user_group
+        WHERE name LIKE #{groupname}
+        ${ew.sqlSegment}
+    </select>
 
 </mapper>
