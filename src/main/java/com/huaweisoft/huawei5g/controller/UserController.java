@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -67,14 +68,14 @@ public class UserController {
 
     @ApiOperation(value="根据Excel表格导入用户数据")
     @PostMapping("/import")
-    public ResponseResult importUsers(MultipartFile file) {
+    public ResponseResult importUsers(MultipartFile file, HttpServletResponse response) {
         List<User> users = userExcelService.importUsers(file);
         for (User u : users) {
             System.out.println(u);
         }
-        int count = userService.addUsersBatch(users);
+        int count = userExcelService.addUsersBatch(users, response);
         System.out.println("count: " + count);
-        return users == null ? ResponseResult.error() : ResponseResult.build(ResponseCode.SUCCESS, users);
+        return count == 0 ? null : ResponseResult.success();
     }
 
 }

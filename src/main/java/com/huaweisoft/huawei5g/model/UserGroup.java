@@ -13,6 +13,14 @@ public class UserGroup {
 
     private Byte status;
 
+    public UserGroup() {
+    }
+
+    public UserGroup(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }
