@@ -1,6 +1,8 @@
 package com.huaweisoft.huawei5g.model;
 
+
 public class User {
+
     private Integer id;
 
     private Integer groupid;
@@ -10,6 +12,10 @@ public class User {
     private String groups;
 
     private String username;
+
+    private String nickName;
+
+    private String image;
 
     private String mobile;
 
@@ -61,6 +67,8 @@ public class User {
 
     private Integer lotteryScore;
 
+    private UserGroup userGroup;
+
     public Integer getId() {
         return id;
     }
@@ -90,7 +98,7 @@ public class User {
     }
 
     public void setGroups(String groups) {
-        this.groups = groups == null ? null : groups.trim();
+        this.groups = groups;
     }
 
     public String getUsername() {
@@ -98,7 +106,23 @@ public class User {
     }
 
     public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+        this.username = username;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getMobile() {
@@ -106,7 +130,7 @@ public class User {
     }
 
     public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
+        this.mobile = mobile;
     }
 
     public String getEmail() {
@@ -114,7 +138,7 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
     public Integer getEnergy() {
@@ -146,7 +170,7 @@ public class User {
     }
 
     public void setWeeks(String weeks) {
-        this.weeks = weeks == null ? null : weeks.trim();
+        this.weeks = weeks;
     }
 
     public Integer getWeekScore() {
@@ -274,7 +298,7 @@ public class User {
     }
 
     public void setNickname(String nickname) {
-        this.nickname = nickname == null ? null : nickname.trim();
+        this.nickname = nickname;
     }
 
     public String getPkWinrate() {
@@ -282,7 +306,7 @@ public class User {
     }
 
     public void setPkWinrate(String pkWinrate) {
-        this.pkWinrate = pkWinrate == null ? null : pkWinrate.trim();
+        this.pkWinrate = pkWinrate;
     }
 
     public Integer getLotteryCount() {
@@ -299,5 +323,13 @@ public class User {
 
     public void setLotteryScore(Integer lotteryScore) {
         this.lotteryScore = lotteryScore;
+    }
+
+    public UserGroup getUserGroup() {
+        return userGroup;
+    }
+
+    public void setUserGroup(UserGroup userGroup) {
+        this.userGroup = userGroup;
     }
 }

@@ -64,7 +64,7 @@ public class UserGroup {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public Integer getCreatedAt() {
@@ -96,7 +96,7 @@ public class UserGroup {
     }
 
     public void setUserCount(String userCount) {
-        this.userCount = userCount == null ? null : userCount.trim();
+        this.userCount = userCount;
     }
 
     public Integer getAverageScore() {
@@ -152,7 +152,7 @@ public class UserGroup {
     }
 
     public void setPkWin(String pkWin) {
-        this.pkWin = pkWin == null ? null : pkWin.trim();
+        this.pkWin = pkWin;
     }
 
     public String getPkLost() {
@@ -160,7 +160,7 @@ public class UserGroup {
     }
 
     public void setPkLost(String pkLost) {
-        this.pkLost = pkLost == null ? null : pkLost.trim();
+        this.pkLost = pkLost;
     }
 
     public String getPkWinrate() {
@@ -168,7 +168,7 @@ public class UserGroup {
     }
 
     public void setPkWinrate(String pkWinrate) {
-        this.pkWinrate = pkWinrate == null ? null : pkWinrate.trim();
+        this.pkWinrate = pkWinrate;
     }
 
     public Integer getPkScore() {

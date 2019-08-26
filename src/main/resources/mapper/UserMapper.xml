@@ -66,6 +66,7 @@
         ORDER BY sum_score DESC
     </select>
 
+    <!--搜索-->
     <select id="searchUsers" parameterType="String" resultType="com.huaweisoft.huawei5g.model.User">
         SELECT
         <include refid="User_Column_List"/>

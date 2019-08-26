@@ -24,4 +24,5 @@ public interface UserMapper extends BaseMapper<User> {
     IPage<User> rankByWeeks(IPage<User> page, @Param(Constants.WRAPPER) Wrapper<User> queryWrapper, String weeks);
 
     IPage<User> rankByTotalScore(IPage<User> page, @Param(Constants.WRAPPER) QueryWrapper<User> wrapper);
+
 }
